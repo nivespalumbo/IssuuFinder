@@ -39,10 +39,12 @@
         <phone:Pivot Title="ISSUU FINDER">
             <!--Elemento Pivot uno-->
             <phone:PivotItem Header="{Binding Path=LocalizedResources.Home, Source={StaticResource LocalizedStrings}}">
-                <phone:LongListSelector Margin="0,0,-12,0"
+                <phone:LongListSelector x:Name="documentList"
+                                        Margin="0,0,-12,0"
                                         ItemsSource="{Binding Items}"
                                         LayoutMode="Grid"
-                                        GridCellSize="200,300">
+                                        GridCellSize="200,300"
+                                        SelectionChanged="DocumentList_SelectionChanged">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <Image Source="{Binding ThumbnailPath}" Margin="3,3,3,3"/>

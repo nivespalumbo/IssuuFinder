@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using IssuuFinder.Resources;
+using IssuuFinder.ViewModels;
 
 namespace IssuuFinder
 {
@@ -32,6 +33,19 @@ namespace IssuuFinder
             {
                 App.ViewModel.LoadData();
             }
+        }
+
+        private void DocumentList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (documentList.SelectedItem == null)
+                return;
+            
+            IssuuDocument item = documentList.SelectedItem as IssuuDocument;
+
+            NavigationService.Navigate(new Uri("/DocumentDetail.xaml", UriKind.Relative));
+
+            // Reset selected item to null
+            documentList.SelectedItem = null;
         }
 
         // Codice di esempio per la realizzazione di una ApplicationBar localizzata
