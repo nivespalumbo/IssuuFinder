@@ -49,6 +49,7 @@ namespace IssuuFinder.ViewModels
                 if (value != _documentId)
                 {
                     _documentId = value;
+                    ThumbnailPath = value;
                     NotifyPropertyChanged("DocumentId");
                 }
             }
@@ -72,6 +73,21 @@ namespace IssuuFinder.ViewModels
                     _username = value;
                     NotifyPropertyChanged("Username");
                 }
+            }
+        }
+
+        private string _thumbnailPath;
+
+        public string ThumbnailPath
+        {
+            get 
+            { 
+                return _thumbnailPath;
+            }
+            set
+            { 
+                _thumbnailPath = "http://image.issuu.com/"+_documentId+"/jpg/page_1_thumb_large.jpg";
+                NotifyPropertyChanged("ThumbnailPath");
             }
         }
 
