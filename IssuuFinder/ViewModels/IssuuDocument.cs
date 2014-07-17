@@ -8,69 +8,69 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace Issuu_Finder.ViewModels
+namespace IssuuFinder.ViewModels
 {
-    public class ItemViewModel : INotifyPropertyChanged
+    public class IssuuDocument : INotifyPropertyChanged
     {
-        private string _lineOne;
+        private string _docname;
         /// <summary>
         /// Proprietà ViewModel di esempio: questa proprietà viene utilizzata per visualizzare il relativo valore mediante un'associazione.
         /// </summary>
         /// <returns></returns>
-        public string LineOne
+        public string Docname
         {
             get
             {
-                return _lineOne;
+                return _docname;
             }
             set
             {
-                if (value != _lineOne)
+                if (value != _docname)
                 {
-                    _lineOne = value;
-                    NotifyPropertyChanged("LineOne");
+                    _docname = value;
+                    NotifyPropertyChanged("Docname");
                 }
             }
         }
 
-        private string _lineTwo;
+        private string _documentId;
         /// <summary>
         /// Proprietà ViewModel di esempio: questa proprietà viene utilizzata per visualizzare il relativo valore mediante un'associazione.
         /// </summary>
         /// <returns></returns>
-        public string LineTwo
+        public string DocumentId
         {
             get
             {
-                return _lineTwo;
+                return _documentId;
             }
             set
             {
-                if (value != _lineTwo)
+                if (value != _documentId)
                 {
-                    _lineTwo = value;
-                    NotifyPropertyChanged("LineTwo");
+                    _documentId = value;
+                    NotifyPropertyChanged("DocumentId");
                 }
             }
         }
 
-        private string _lineThree;
+        private string _username;
         /// <summary>
         /// Proprietà ViewModel di esempio: questa proprietà viene utilizzata per visualizzare il relativo valore mediante un'associazione.
         /// </summary>
         /// <returns></returns>
-        public string LineThree
+        public string Username
         {
             get
             {
-                return _lineThree;
+                return _username;
             }
             set
             {
-                if (value != _lineThree)
+                if (value != _username)
                 {
-                    _lineThree = value;
-                    NotifyPropertyChanged("LineThree");
+                    _username = value;
+                    NotifyPropertyChanged("Username");
                 }
             }
         }

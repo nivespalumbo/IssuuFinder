@@ -4,7 +4,7 @@
   <Languages xmlns="">
     <Language code="en" />
   </Languages>
-  <App xmlns="" ProductID="{1dd2615d-747a-44ce-934c-3283c26ae5d9}" Title="Issuu Finder" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="" Description="Sample description" SDOptOut="false" BackUpOptOut="false" Publisher="" PublisherID="{e28dbcc4-aaf1-4157-a7ec-84b2c8243451}">
+  <App xmlns="" ProductID="{723022e1-5653-462f-a7c4-33bc62b098d8}" Title="IssuuFinder" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="IssuuFinder author" Description="Sample description" SDOptOut="false" BackUpOptOut="false" Publisher="IssuuFinder" PublisherID="{919edc43-3558-4006-a0ab-ff83577a1fd5}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -17,22 +17,17 @@
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" ActivationPolicy="Resume" />
     </Tasks>
     <Tokens>
-      <PrimaryToken TokenID="Issuu_FinderToken" TaskName="_default">
+      <PrimaryToken TokenID="IssuuFinderToken" TaskName="_default">
         <TemplateFlip>
           <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>Issuu_Finder</Title>
-          <BackContent>
-          </BackContent>
-          <BackBackgroundImageURI>
-          </BackBackgroundImageURI>
-          <BackTitle>
-          </BackTitle>
-          <DeviceLockImageURI>
-          </DeviceLockImageURI>
-          <HasLarge>
-          </HasLarge>
+          <Title>IssuuFinder</Title>
+          <BackContent></BackContent>
+          <BackBackgroundImageURI></BackBackgroundImageURI>
+          <BackTitle></BackTitle>
+          <DeviceLockImageURI></DeviceLockImageURI>
+          <HasLarge></HasLarge>
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>

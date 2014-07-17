@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Diagnostics;
 using System.Resources;
 using System.Windows;
@@ -8,10 +6,10 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using Issuu_Finder.Resources;
-using Issuu_Finder.ViewModels;
+using IssuuFinder.Resources;
+using IssuuFinder.ViewModels;
 
-namespace Issuu_Finder
+namespace IssuuFinder
 {
     public partial class App : Application
     {
@@ -59,7 +57,7 @@ namespace Issuu_Finder
             // Visualizza informazioni di profilatura delle immagini durante il debug.
             if (Debugger.IsAttached)
             {
-                // Visualizza i contatori della frequenza dei fotogrammi corrente.
+                // Visualizza i contatori della frequenza dei fotogrammi corrente
                 Application.Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Visualizza le aree dell'applicazione che vengono ridisegnate in ogni fotogramma.
@@ -75,7 +73,6 @@ namespace Issuu_Finder
                 // e a consumare energia quando l'utente non utilizza il telefono.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-
         }
 
         // Codice da eseguire quando l'attivazione di un contratto, ad esempio l'apertura o la selezione e il salvataggio di un file, restituisce 
@@ -105,13 +102,13 @@ namespace Issuu_Finder
         // Questo codice non verrà eseguito alla chiusura dell'applicazione
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
-            // Verificare che lo stato dell'applicazione richiesto sia persistente qui.
         }
 
         // Codice da eseguire alla chiusura dell'applicazione (ad esempio se l'utente fa clic su Indietro)
         // Questo codice non verrà eseguito quando l'applicazione viene disattivata
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
+            // Verificare che lo stato dell'applicazione richiesto sia persistente qui.
         }
 
         // Codice da eseguire se un'operazione di navigazione ha esito negativo

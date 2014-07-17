@@ -1,6 +1,6 @@
-﻿using Issuu_Finder.Resources;
+﻿using IssuuFinder.Resources;
 
-namespace Issuu_Finder
+namespace IssuuFinder
 {
     /// <summary>
     /// Fornisce l'accesso alle risorse stringa.

@@ -126,9 +126,24 @@
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>applicazione</value>
+    <value>ISSUU FINDER</value>
   </data>
   <data name="SampleProperty" xml:space="preserve">
     <value>Valore della proprietà del runtime di esempio</value>
+  </data>
+  <data name="AppBarButtonText" xml:space="preserve">
+    <value>aggiungi</value>
+  </data>
+  <data name="AppBarMenuItemText" xml:space="preserve">
+    <value>Voce di menu</value>
+  </data>
+  <data name="Favourites" xml:space="preserve">
+    <value>Favourites</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
   </data>
 </root>

@@ -6,11 +6,11 @@ using System.Resources;
 // Le informazioni generali relative a un assembly sono controllate dal seguente 
 // set di attributi. Modificare i valori di questi attributi per modificare le informazioni
 // associate a un assembly.
-[assembly: AssemblyTitle("Issuu_Finder")]
+[assembly: AssemblyTitle("IssuuFinder")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Issuu_Finder")]
+[assembly: AssemblyProduct("IssuuFinder")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -21,7 +21,7 @@ using System.Resources;
 [assembly: ComVisible(false)]
 
 // Se il progetto viene esposto a COM, il seguente GUID verrà utilizzato come ID della libreria dei tipi
-[assembly: Guid("9e86cd9c-1a9b-44ea-b317-8b6d4c1ac2cf")]
+[assembly: Guid("67d5b7fa-eefb-433e-bdc8-b330067c54b1")]
 
 // Le informazioni sulla versione di un assembly sono costituite dai quattro valori seguenti:
 //
