@@ -41,6 +41,7 @@ namespace IssuuFinder
                 return;
             
             IssuuDocument item = documentList.SelectedItem as IssuuDocument;
+            App.DetailViewModel = new DocumentDetailViewModel(item);
 
             NavigationService.Navigate(new Uri("/DocumentDetail.xaml", UriKind.Relative));
 

@@ -30,7 +30,8 @@
         <Grid x:Name="ContentPanel" 
               Grid.Row="1" 
               Margin="12,0,12,0">
-            <phone:WebBrowser HorizontalAlignment="Center" 
+            <phone:WebBrowser x:Name="webview"
+                              HorizontalAlignment="Center" 
                               IsScriptEnabled="True" 
                               VerticalAlignment="Top" 
                               Height="686" 

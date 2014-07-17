@@ -11,7 +11,7 @@ namespace IssuuFinder.ViewModels
     {
         public MainViewModel()
         {
-            this._items = new ObservableCollection<IssuuDocument>();
+            _items = new ObservableCollection<IssuuDocument>();
         }
 
         /// <summary>

@@ -106,6 +106,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DocumentDetailViewModel.cs" />
     <Compile Include="ViewModels\IssuuDocument.cs" />
     <Compile Include="ViewModels\IssuuResponse.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

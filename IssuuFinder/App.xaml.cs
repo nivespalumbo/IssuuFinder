@@ -14,6 +14,7 @@ namespace IssuuFinder
     public partial class App : Application
     {
         private static MainViewModel viewModel = null;
+        private static DocumentDetailViewModel detailViewModel = null;
 
         /// <summary>
         /// Oggetto ViewModel statico utilizzato dalle visualizzazioni con cui eseguire l'associazione.
@@ -28,6 +29,22 @@ namespace IssuuFinder
                     viewModel = new MainViewModel();
 
                 return viewModel;
+            }
+        }
+
+        public static DocumentDetailViewModel DetailViewModel
+        {
+            get
+            {
+                // Ritardare la creazione del modello di visualizzazione finché necessario
+                if (detailViewModel == null)
+                    detailViewModel = new DocumentDetailViewModel();
+
+                return detailViewModel;
+            }
+            set
+            {
+                detailViewModel = value;
             }
         }
 
