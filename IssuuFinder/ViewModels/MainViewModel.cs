@@ -11,13 +11,29 @@ namespace IssuuFinder.ViewModels
     {
         public MainViewModel()
         {
-            this.Items = new ObservableCollection<IssuuDocument>();
+            this._items = new ObservableCollection<IssuuDocument>();
         }
 
         /// <summary>
         /// Raccolta per oggetti ItemViewModel.
         /// </summary>
-        public ObservableCollection<IssuuDocument> Items { get; private set; }
+        private ObservableCollection<IssuuDocument> _items;
+
+        public ObservableCollection<IssuuDocument> Items
+        {
+            get
+            {
+                return _items;
+            }
+            private set
+            {
+                if (value != _items)
+                {
+                    _items = value;
+                    NotifyPropertyChanged("Items");
+                }
+            }
+        }
 
         private string _sampleProperty = "Sample Runtime Property Value";
         /// <summary>
@@ -72,7 +88,7 @@ namespace IssuuFinder.ViewModels
             if (!string.IsNullOrEmpty(e.Result))
             {
                 IssuuResponse root = JsonConvert.DeserializeObject<IssuuResponse>(e.Result);
-                this.Items = new ObservableCollection<IssuuDocument>(root.Response.Docs);
+                Items = new ObservableCollection<IssuuDocument>(root.Response.Docs);
             }
             
             this.IsDataLoaded = true;
