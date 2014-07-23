@@ -4,6 +4,8 @@ using System.ComponentModel;
 using IssuuFinder.Resources;
 using System.Net;
 using Newtonsoft.Json;
+using IssuuFinder.Model;
+using Microsoft.Phone.Shell;
 
 namespace IssuuFinder.ViewModels
 {
@@ -12,16 +14,11 @@ namespace IssuuFinder.ViewModels
         public MainViewModel()
         {
             _items = new ObservableCollection<IssuuDocument>();
+            _searchResults = new ObservableCollection<IssuuDocument>();
         }
 
-        /// <summary>
-        /// Raccolta per oggetti ItemViewModel.
-        /// </summary>
+
         private ObservableCollection<IssuuDocument> _items;
-
-        private ObservableCollection<IssuuDocument> _searchResults;
-
-        
 
         public ObservableCollection<IssuuDocument> Items
         {
@@ -38,7 +35,9 @@ namespace IssuuFinder.ViewModels
                 }
             }
         }
-        
+
+        private ObservableCollection<IssuuDocument> _searchResults;
+
         public ObservableCollection<IssuuDocument> SearchResults
         {
             get 
@@ -95,26 +94,46 @@ namespace IssuuFinder.ViewModels
 
         public void LoadData()
         {
+            SystemTray.ProgressIndicator = new ProgressIndicator()
+            {
+                IsIndeterminate = true,
+                IsVisible = true,
+                Text = AppResources.Loader
+            };
+
             WebClient webclient = new WebClient();
-            webclient.DownloadStringCompleted += (object sender, DownloadStringCompletedEventArgs e) => {
+            webclient.DownloadStringCompleted += (object sender, DownloadStringCompletedEventArgs e) =>
+            {
+                SystemTray.ProgressIndicator.IsVisible = false;
+
                 if (!string.IsNullOrEmpty(e.Result))
                 {
                     IssuuResponse root = JsonConvert.DeserializeObject<IssuuResponse>(e.Result);
                     Items = new ObservableCollection<IssuuDocument>(root.Response.Docs);
                 }
-            
+
                 this.IsDataLoaded = true;
             };
+
             webclient.DownloadStringAsync(new Uri("http://search.issuu.com/api/2_0/document"));
         }
 
         public void Search(string key)
         {
+            SystemTray.ProgressIndicator = new ProgressIndicator()
+            {
+                IsIndeterminate = true,
+                IsVisible = true,
+                Text = AppResources.Loader
+            };
+
             WebClient webclient = new WebClient();
             webclient.DownloadStringCompleted += (object sender, DownloadStringCompletedEventArgs e) =>
             {
                 if (!string.IsNullOrEmpty(e.Result))
                 {
+                    SystemTray.ProgressIndicator.IsVisible = false;
+
                     IssuuResponse root = JsonConvert.DeserializeObject<IssuuResponse>(e.Result);
                     SearchResults = new ObservableCollection<IssuuDocument>(root.Response.Docs);
                 }

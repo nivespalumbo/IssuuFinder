@@ -100,6 +100,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\RequestHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -107,8 +108,8 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\DocumentDetailViewModel.cs" />
-    <Compile Include="ViewModels\IssuuDocument.cs" />
-    <Compile Include="ViewModels\IssuuResponse.cs" />
+    <Compile Include="Model\IssuuDocument.cs" />
+    <Compile Include="Model\IssuuResponse.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

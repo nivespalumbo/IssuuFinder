@@ -106,6 +106,15 @@ namespace IssuuFinder.Resources {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a Caricamento....
+        /// </summary>
+        public static string Loader {
+            get {
+                return ResourceManager.GetString("Loader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a LeftToRight.
         /// </summary>
         public static string ResourceFlowDirection {

@@ -43,13 +43,12 @@
                                         Margin="0,0,-12,0"
                                         ItemsSource="{Binding Items}"
                                         LayoutMode="Grid"
-                                        GridCellSize="200,300"
+                                        GridCellSize="220,300"
                                         SelectionChanged="ItemsList_SelectionChanged">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <Image Source="{Binding ThumbnailPath}" 
-                                   Margin="3,3,3,3"
-                                   Stretch="UniformToFill"/>
+                                   Stretch="UniformToFill" Margin="3"/>
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>
@@ -84,12 +83,12 @@
                     <phone:LongListSelector x:Name="searchResultsList" Grid.Row="1"
                                             ItemsSource="{Binding SearchResults}"
                                             LayoutMode="Grid"
-                                            GridCellSize="200,300"
+                                            GridCellSize="220,300"
                                             SelectionChanged="SearchResultsList_SelectionChanged">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <Image Source="{Binding ThumbnailPath}" 
-                                       Margin="3,3,3,3"
+                                       Margin="3"
                                        Stretch="UniformToFill"/>
                             </DataTemplate>
                         </phone:LongListSelector.ItemTemplate>

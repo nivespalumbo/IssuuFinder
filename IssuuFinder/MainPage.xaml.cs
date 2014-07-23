@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using IssuuFinder.Resources;
 using IssuuFinder.ViewModels;
+using IssuuFinder.Model;
 
 namespace IssuuFinder
 {
@@ -26,7 +27,6 @@ namespace IssuuFinder
             //BuildLocalizedApplicationBar();
         }
 
-        // Caricare i dati per gli elementi ViewModel
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (!App.ViewModel.IsDataLoaded)

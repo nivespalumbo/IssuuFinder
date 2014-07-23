@@ -146,4 +146,7 @@
   <data name="Search" xml:space="preserve">
     <value>Cerca</value>
   </data>
+  <data name="Loader" xml:space="preserve">
+    <value>Caricamento...</value>
+  </data>
 </root>

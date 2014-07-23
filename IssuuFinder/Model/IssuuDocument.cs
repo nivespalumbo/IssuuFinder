@@ -8,15 +8,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace IssuuFinder.ViewModels
+namespace IssuuFinder.Model
 {
     public class IssuuDocument : INotifyPropertyChanged
     {
         private string _docname;
-        /// <summary>
-        /// Proprietà ViewModel di esempio: questa proprietà viene utilizzata per visualizzare il relativo valore mediante un'associazione.
-        /// </summary>
-        /// <returns></returns>
+        
         public string Docname
         {
             get
@@ -34,10 +31,7 @@ namespace IssuuFinder.ViewModels
         }
 
         private string _documentId;
-        /// <summary>
-        /// Proprietà ViewModel di esempio: questa proprietà viene utilizzata per visualizzare il relativo valore mediante un'associazione.
-        /// </summary>
-        /// <returns></returns>
+        
         public string DocumentId
         {
             get
@@ -56,10 +50,7 @@ namespace IssuuFinder.ViewModels
         }
 
         private string _username;
-        /// <summary>
-        /// Proprietà ViewModel di esempio: questa proprietà viene utilizzata per visualizzare il relativo valore mediante un'associazione.
-        /// </summary>
-        /// <returns></returns>
+
         public string Username
         {
             get
