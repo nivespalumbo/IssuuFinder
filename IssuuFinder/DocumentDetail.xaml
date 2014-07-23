@@ -34,9 +34,7 @@
                               HorizontalAlignment="Center" 
                               IsScriptEnabled="True" 
                               VerticalAlignment="Top" 
-                              Height="686" 
-                              Margin="10,0"
-                              Width="436"/>
+                              Margin="10,10,10,10" Width="436" Height="676"/>
         </Grid>
     </Grid>
 

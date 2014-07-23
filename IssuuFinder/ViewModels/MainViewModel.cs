@@ -19,6 +19,10 @@ namespace IssuuFinder.ViewModels
         /// </summary>
         private ObservableCollection<IssuuDocument> _items;
 
+        private ObservableCollection<IssuuDocument> _searchResults;
+
+        
+
         public ObservableCollection<IssuuDocument> Items
         {
             get
@@ -34,38 +38,54 @@ namespace IssuuFinder.ViewModels
                 }
             }
         }
-
-        private string _sampleProperty = "Sample Runtime Property Value";
-        /// <summary>
-        /// Proprietà ViewModel di esempio: questa proprietà viene utilizzata per visualizzare il relativo valore mediante un'associazione
-        /// </summary>
-        /// <returns></returns>
-        public string SampleProperty
+        
+        public ObservableCollection<IssuuDocument> SearchResults
         {
-            get
+            get 
             {
-                return _sampleProperty;
+                return _searchResults;
             }
-            set
+            set 
             {
-                if (value != _sampleProperty)
+                if (value != _searchResults)
                 {
-                    _sampleProperty = value;
-                    NotifyPropertyChanged("SampleProperty");
+                    _searchResults = value;
+                    NotifyPropertyChanged("SearchResults");
                 }
             }
         }
 
-        /// <summary>
-        /// Proprietà di esempio che restituisce una stringa localizzata
-        /// </summary>
-        public string LocalizedSampleProperty
-        {
-            get
-            {
-                return AppResources.SampleProperty;
-            }
-        }
+        //private string _sampleProperty = "Sample Runtime Property Value";
+        ///// <summary>
+        ///// Proprietà ViewModel di esempio: questa proprietà viene utilizzata per visualizzare il relativo valore mediante un'associazione
+        ///// </summary>
+        ///// <returns></returns>
+        //public string SampleProperty
+        //{
+        //    get
+        //    {
+        //        return _sampleProperty;
+        //    }
+        //    set
+        //    {
+        //        if (value != _sampleProperty)
+        //        {
+        //            _sampleProperty = value;
+        //            NotifyPropertyChanged("SampleProperty");
+        //        }
+        //    }
+        //}
+
+        ///// <summary>
+        ///// Proprietà di esempio che restituisce una stringa localizzata
+        ///// </summary>
+        //public string LocalizedSampleProperty
+        //{
+        //    get
+        //    {
+        //        return AppResources.SampleProperty;
+        //    }
+        //}
 
         public bool IsDataLoaded
         {
@@ -73,25 +93,35 @@ namespace IssuuFinder.ViewModels
             private set;
         }
 
-        /// <summary>
-        /// Crea e aggiunge alcuni oggetti ItemViewModel nella raccolta di elementi.
-        /// </summary>
         public void LoadData()
         {
             WebClient webclient = new WebClient();
-            webclient.DownloadStringCompleted += webclient_DownloadStringCompleted;
+            webclient.DownloadStringCompleted += (object sender, DownloadStringCompletedEventArgs e) => {
+                if (!string.IsNullOrEmpty(e.Result))
+                {
+                    IssuuResponse root = JsonConvert.DeserializeObject<IssuuResponse>(e.Result);
+                    Items = new ObservableCollection<IssuuDocument>(root.Response.Docs);
+                }
+            
+                this.IsDataLoaded = true;
+            };
             webclient.DownloadStringAsync(new Uri("http://search.issuu.com/api/2_0/document"));
         }
 
-        private void webclient_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        public void Search(string key)
         {
-            if (!string.IsNullOrEmpty(e.Result))
+            WebClient webclient = new WebClient();
+            webclient.DownloadStringCompleted += (object sender, DownloadStringCompletedEventArgs e) =>
             {
-                IssuuResponse root = JsonConvert.DeserializeObject<IssuuResponse>(e.Result);
-                Items = new ObservableCollection<IssuuDocument>(root.Response.Docs);
-            }
-            
-            this.IsDataLoaded = true;
+                if (!string.IsNullOrEmpty(e.Result))
+                {
+                    IssuuResponse root = JsonConvert.DeserializeObject<IssuuResponse>(e.Result);
+                    SearchResults = new ObservableCollection<IssuuDocument>(root.Response.Docs);
+                }
+
+                this.IsDataLoaded = true;
+            };
+            webclient.DownloadStringAsync(new Uri("http://search.issuu.com/api/2_0/document?q="+key));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

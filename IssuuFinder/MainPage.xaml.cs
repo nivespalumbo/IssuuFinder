@@ -35,18 +35,38 @@ namespace IssuuFinder
             }
         }
 
-        private void DocumentList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ItemsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (documentList.SelectedItem == null)
+            if (itemsList.SelectedItem == null)
                 return;
             
-            IssuuDocument item = documentList.SelectedItem as IssuuDocument;
+            IssuuDocument item = itemsList.SelectedItem as IssuuDocument;
             App.DetailViewModel = new DocumentDetailViewModel(item);
 
             NavigationService.Navigate(new Uri("/DocumentDetail.xaml", UriKind.Relative));
 
             // Reset selected item to null
-            documentList.SelectedItem = null;
+            itemsList.SelectedItem = null;
+        }
+
+        private void btSearch_Click(object sender, RoutedEventArgs e)
+        {
+            string key = txKey.Text;
+            App.ViewModel.Search(key);
+        }
+
+        private void SearchResultsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (searchResultsList.SelectedItem == null)
+                return;
+
+            IssuuDocument item = searchResultsList.SelectedItem as IssuuDocument;
+            App.DetailViewModel = new DocumentDetailViewModel(item);
+
+            NavigationService.Navigate(new Uri("/DocumentDetail.xaml", UriKind.Relative));
+
+            // Reset selected item to null
+            searchResultsList.SelectedItem = null;
         }
 
         // Codice di esempio per la realizzazione di una ApplicationBar localizzata
