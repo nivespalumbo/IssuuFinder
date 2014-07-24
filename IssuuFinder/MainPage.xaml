@@ -62,24 +62,18 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     
-                    <TextBox x:Name="txKey"
+                    <StackPanel Orientation="Horizontal" Grid.Row="0">
+                        <TextBox x:Name="txKey"
                              HorizontalAlignment="Left" 
-                             Height="72" 
                              TextWrapping="Wrap"
-                             VerticalAlignment="Center" 
-                             Width="370"
-                             Grid.Row="0"/>
-                    <Button x:Name="btSearch"
+                             VerticalAlignment="Center" Width="375"/>
+                        <Button x:Name="btSearch"
                             Click="btSearch_Click" HorizontalAlignment="Left" 
-                            Margin="370,0,0,0" 
                             VerticalAlignment="Center" 
-                            BorderThickness="0"
-                            Grid.Row="0">
-                        <Image Stretch="UniformToFill"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Source="Assets/ic_search.png"/>
-                    </Button>
+                            BorderThickness="0" Height="72" Width="82">
+                            <Image Source="Assets/ic_search.png" Stretch="UniformToFill"/>
+                        </Button>
+                    </StackPanel>
                     <phone:LongListSelector x:Name="searchResultsList" Grid.Row="1"
                                             ItemsSource="{Binding SearchResults}"
                                             LayoutMode="Grid"

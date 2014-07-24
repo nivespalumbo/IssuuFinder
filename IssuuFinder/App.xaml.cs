@@ -13,22 +13,22 @@ namespace IssuuFinder
 {
     public partial class App : Application
     {
-        private static MainViewModel viewModel = null;
+        private static MainViewModel mainViewModel = null;
         private static DocumentDetailViewModel detailViewModel = null;
 
         /// <summary>
         /// Oggetto ViewModel statico utilizzato dalle visualizzazioni con cui eseguire l'associazione.
         /// </summary>
         /// <returns>Oggetto MainViewModel.</returns>
-        public static MainViewModel ViewModel
+        public static MainViewModel MainViewModel
         {
             get
             {
                 // Ritardare la creazione del modello di visualizzazione finché necessario
-                if (viewModel == null)
-                    viewModel = new MainViewModel();
+                if (mainViewModel == null)
+                    mainViewModel = new MainViewModel();
 
-                return viewModel;
+                return mainViewModel;
             }
         }
 
@@ -109,9 +109,9 @@ namespace IssuuFinder
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
             // Verificare che lo stato dell'applicazione sia ripristinato in modo appropriato
-            if (!App.ViewModel.IsDataLoaded)
+            if (!App.MainViewModel.IsDataLoaded)
             {
-                App.ViewModel.LoadData();
+                App.MainViewModel.LoadData();
             }
         }
 
