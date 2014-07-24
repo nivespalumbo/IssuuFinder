@@ -8,7 +8,6 @@
     <!--Risorse dell'applicazione-->
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:IssuuFinder" x:Key="LocalizedStrings"/>
-        <!--xmlns:h="clr-namespace:IssuuFinder"<h:MultiResImageChooser x:Key="MultiResImageChooser"/>-->
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

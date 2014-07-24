@@ -21,7 +21,7 @@ namespace IssuuFinder
             InitializeComponent();
 
             // Impostare il contesto dei dati nel controllo casella di riepilogo su dati di esempio
-            DataContext = App.MainViewModel;
+            DataContext = App.ViewModel;
 
             // Codice di esempio per localizzare la ApplicationBar
             BuildLocalizedApplicationBar();
@@ -29,9 +29,9 @@ namespace IssuuFinder
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (!App.MainViewModel.IsDataLoaded)
+            if (!App.ViewModel.IsDataLoaded)
             {
-                App.MainViewModel.LoadData();
+                App.ViewModel.LoadData();
             }
         }
 
@@ -39,16 +39,20 @@ namespace IssuuFinder
         {
             if (itemsList.SelectedItem == null)
                 return;
-
-            //recupera l'oggetto che è stato selezionato e aggiorna il detailViewModel con quell'elemento
+            
             IssuuDocument item = itemsList.SelectedItem as IssuuDocument;
             App.DetailViewModel = new DocumentDetailViewModel(item);
 
-            // apre la pagina di dettaglio
             NavigationService.Navigate(new Uri("/DocumentDetail.xaml", UriKind.Relative));
 
             // Reset selected item to null
             itemsList.SelectedItem = null;
+        }
+
+        private void btSearch_Click(object sender, RoutedEventArgs e)
+        {
+            string key = txKey.Text;
+            App.ViewModel.Search(key);
         }
 
         private void SearchResultsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -65,17 +69,6 @@ namespace IssuuFinder
             searchResultsList.SelectedItem = null;
         }
 
-        private void btSearch_Click(object sender, RoutedEventArgs e)
-        {
-            string key = txKey.Text;
-            App.MainViewModel.Search(key);
-        }
-
-        private void btSearchAppBar_Click(object sender, EventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/Search.xaml", UriKind.Relative));
-        }
-
         // Codice di esempio per la realizzazione di una ApplicationBar localizzata
         private void BuildLocalizedApplicationBar()
         {
@@ -83,14 +76,19 @@ namespace IssuuFinder
             ApplicationBar = new ApplicationBar();
 
             // Crea un nuovo pulsante e imposta il valore del testo sulla stringa localizzata da AppResources.
-            ApplicationBarIconButton btSearchAppBar = new ApplicationBarIconButton(new Uri("Assets/ic_search.png", UriKind.Relative));
-            btSearchAppBar.Text = AppResources.Search;
-            btSearchAppBar.Click += btSearchAppBar_Click;
-            ApplicationBar.Buttons.Add(btSearchAppBar);
+            ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/ic_search.png", UriKind.Relative));
+            appBarButton.Text = AppResources.Search;
+            appBarButton.Click += appBarButton_Click;
+            ApplicationBar.Buttons.Add(appBarButton);
 
             // Crea una nuova voce di menu con la stringa localizzata da AppResources.
             //ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
             //ApplicationBar.MenuItems.Add(appBarMenuItem);
         }
-    }   
+
+        private void appBarButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Search.xaml", UriKind.Relative));
+        }
+    }
 }
