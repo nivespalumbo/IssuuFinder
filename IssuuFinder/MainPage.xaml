@@ -78,7 +78,7 @@
                         <Image Stretch="UniformToFill"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Source="Icons/ic_search.png"/>
+                               Source="Assets/ic_search.png"/>
                     </Button>
                     <phone:LongListSelector x:Name="searchResultsList" Grid.Row="1"
                                             ItemsSource="{Binding SearchResults}"

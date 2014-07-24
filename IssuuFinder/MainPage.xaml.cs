@@ -24,7 +24,7 @@ namespace IssuuFinder
             DataContext = App.ViewModel;
 
             // Codice di esempio per localizzare la ApplicationBar
-            //BuildLocalizedApplicationBar();
+            BuildLocalizedApplicationBar();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -70,19 +70,25 @@ namespace IssuuFinder
         }
 
         // Codice di esempio per la realizzazione di una ApplicationBar localizzata
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Imposta la barra delle applicazioni della pagina su una nuova istanza di ApplicationBar
-        //    ApplicationBar = nuova ApplicationBar();
+        private void BuildLocalizedApplicationBar()
+        {
+            // Imposta la barra delle applicazioni della pagina su una nuova istanza di ApplicationBar
+            ApplicationBar = new ApplicationBar();
 
-        //    // Crea un nuovo pulsante e imposta il valore del testo sulla stringa localizzata da AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
+            // Crea un nuovo pulsante e imposta il valore del testo sulla stringa localizzata da AppResources.
+            ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/ic_search.png", UriKind.Relative));
+            appBarButton.Text = AppResources.Search;
+            appBarButton.Click += appBarButton_Click;
+            ApplicationBar.Buttons.Add(appBarButton);
 
-        //    // Crea una nuova voce di menu con la stringa localizzata da AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
+            // Crea una nuova voce di menu con la stringa localizzata da AppResources.
+            //ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
+            //ApplicationBar.MenuItems.Add(appBarMenuItem);
+        }
+
+        private void appBarButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Search.xaml", UriKind.Relative));
+        }
     }
 }
