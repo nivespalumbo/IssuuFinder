@@ -1,48 +1,94 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// Il modello di elemento per la pagina vuota è documentato all'indirizzo http://go.microsoft.com/fwlink/?LinkId=234238
+using System.Net;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using IssuuFinder.Resources;
+using IssuuFinder.ViewModels;
+using IssuuFinder.Model;
 
 namespace IssuuFinder
 {
-    /// <summary>
-    /// Pagina vuota che può essere utilizzata autonomamente oppure esplorata all'interno di un frame.
-    /// </summary>
-    public sealed partial class MainPage : Page
+    public partial class MainPage : PhoneApplicationPage
     {
+        // Costruttore
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
-            this.NavigationCacheMode = NavigationCacheMode.Required;
+            // Impostare il contesto dei dati nel controllo casella di riepilogo su dati di esempio
+            DataContext = App.ViewModel;
+
+            // Codice di esempio per localizzare la ApplicationBar
+            BuildLocalizedApplicationBar();
         }
 
-        /// <summary>
-        /// Richiamato quando la pagina sta per essere visualizzata in un Frame.
-        /// </summary>
-        /// <param name="e">Dati dell'evento in cui vengono descritte le modalità con cui la pagina è stata raggiunta.
-        /// Questo parametro viene in genere utilizzato per configurare la pagina.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // TODO: preparare la pagina da visualizzare qui.
+            if (!App.ViewModel.IsDataLoaded)
+            {
+                App.ViewModel.LoadData();
+            }
+        }
 
-            // TODO: se l'applicazione contiene più pagine, assicurarsi che si stia
-            // gestendo il pulsante Indietro dell'hardware effettuando la registrazione per
-            // l'evento Windows.Phone.UI.Input.HardwareButtons.BackPressed.
-            // Se si utilizza l'elemento NavigationHelper fornito da alcuni modelli,
-            // questo evento viene gestito automaticamente.
+        private void ItemsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (itemsList.SelectedItem == null)
+                return;
+            
+            IssuuDocument item = itemsList.SelectedItem as IssuuDocument;
+            App.DetailViewModel = new DocumentDetailViewModel(item);
+
+            NavigationService.Navigate(new Uri("/DocumentDetail.xaml", UriKind.Relative));
+
+            // Reset selected item to null
+            itemsList.SelectedItem = null;
+        }
+
+        private void btSearch_Click(object sender, RoutedEventArgs e)
+        {
+            string key = txKey.Text;
+            App.ViewModel.Search(key);
+        }
+
+        private void SearchResultsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (searchResultsList.SelectedItem == null)
+                return;
+
+            IssuuDocument item = searchResultsList.SelectedItem as IssuuDocument;
+            App.DetailViewModel = new DocumentDetailViewModel(item);
+
+            NavigationService.Navigate(new Uri("/DocumentDetail.xaml", UriKind.Relative));
+
+            // Reset selected item to null
+            searchResultsList.SelectedItem = null;
+        }
+
+        // Codice di esempio per la realizzazione di una ApplicationBar localizzata
+        private void BuildLocalizedApplicationBar()
+        {
+            // Imposta la barra delle applicazioni della pagina su una nuova istanza di ApplicationBar
+            ApplicationBar = new ApplicationBar();
+
+            // Crea un nuovo pulsante e imposta il valore del testo sulla stringa localizzata da AppResources.
+            ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/ic_search.png", UriKind.Relative));
+            appBarButton.Text = AppResources.Search;
+            appBarButton.Click += appBarButton_Click;
+            ApplicationBar.Buttons.Add(appBarButton);
+
+            // Crea una nuova voce di menu con la stringa localizzata da AppResources.
+            //ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
+            //ApplicationBar.MenuItems.Add(appBarMenuItem);
+        }
+
+        private void appBarButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Search.xaml", UriKind.Relative));
         }
     }
 }
