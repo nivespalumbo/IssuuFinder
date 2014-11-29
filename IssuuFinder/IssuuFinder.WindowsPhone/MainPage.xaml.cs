@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -14,12 +15,11 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // Il modello di elemento per la pagina vuota è documentato all'indirizzo http://go.microsoft.com/fwlink/?LinkId=234238
+using IssuuFinder.Model;
+using IssuuFinder.ViewModels;
 
 namespace IssuuFinder
 {
-    /// <summary>
-    /// Pagina vuota che può essere utilizzata autonomamente oppure esplorata all'interno di un frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
         public MainPage()
@@ -37,6 +37,10 @@ namespace IssuuFinder
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // TODO: preparare la pagina da visualizzare qui.
+            if (!App.ViewModel.IsDataLoaded)
+            {
+                App.ViewModel.LoadData();
+            }
 
             // TODO: se l'applicazione contiene più pagine, assicurarsi che si stia
             // gestendo il pulsante Indietro dell'hardware effettuando la registrazione per

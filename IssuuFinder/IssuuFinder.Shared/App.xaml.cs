@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IssuuFinder.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -28,6 +29,23 @@ namespace IssuuFinder
 #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
 #endif
+        private static MainViewModel _viewModel = null;
+
+        /// <summary>
+        /// Oggetto ViewModel statico utilizzato dalle visualizzazioni con cui eseguire l'associazione.
+        /// </summary>
+        /// <returns>Oggetto MainViewModel.</returns>
+        public static MainViewModel ViewModel
+        {
+            get
+            {
+                // Ritardare la creazione del modello di visualizzazione finché necessario
+                if (_viewModel == null)
+                    _viewModel = new MainViewModel();
+
+                return _viewModel;
+            }
+        }
 
         /// <summary>
         /// Inizializza l'oggetto Application singleton. Si tratta della prima riga del codice creato

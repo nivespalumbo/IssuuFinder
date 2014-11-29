@@ -9,6 +9,70 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.DataContext>
+            <Binding Path="ViewModel" />
+        </Grid.DataContext>
+        <Pivot Title="ISSUU FINDER">
+            <!--Elemento Pivot uno-->
+            <PivotItem Header="Home">
+                <ListView ItemsSource="{Binding Items}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding ThumbnailPath}" 
+                                   Stretch="UniformToFill" Margin="3"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                </ListView>
+            </PivotItem>
 
+            <!--Elemento Pivot due-->
+            <PivotItem Header="Cerca">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="72" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="370" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox
+                                HorizontalAlignment="Left" 
+                                Height="72" 
+                                TextWrapping="Wrap"
+                                VerticalAlignment="Center" 
+                                Width="370"
+                                Grid.Row="0" Grid.Column="0"/>
+                    <Button
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            BorderThickness="0"
+                            Grid.Row="0" Grid.Column="1">
+                        <Image Stretch="UniformToFill"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Source="Assets/ic_search.png"/>
+                    </Button>
+
+                    
+                </Grid>
+            </PivotItem>
+
+            <!--Elemento Pivot tre-->
+            <PivotItem Header="Preferiti">
+                <!--Elenco a doppia riga senza testo a capo-->
+                <ListView DataContext="{Binding Items}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,17">
+                                <TextBlock Text="{Binding Docname}" TextWrapping="NoWrap" Margin="12,0,0,0" />
+                                <TextBlock Text="{Binding DocumentId}" TextWrapping="NoWrap" Margin="12,-6,0,0" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>
