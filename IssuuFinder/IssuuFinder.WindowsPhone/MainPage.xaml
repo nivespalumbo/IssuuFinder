@@ -14,12 +14,12 @@
             <!--Elemento Pivot uno-->
             <PivotItem Header="Home">
                 <ListView ItemsSource="{Binding Items}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding ThumbnailPath}" 
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ThumbnailPath}" 
                                    Stretch="UniformToFill" Margin="3"/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </PivotItem>
 
@@ -27,33 +27,33 @@
             <PivotItem Header="Cerca">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="72" />
+                        <RowDefinition Height="auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="370" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <TextBox
                                 HorizontalAlignment="Left" 
-                                Height="72" 
+                                Height="30"
                                 TextWrapping="Wrap"
                                 VerticalAlignment="Center" 
-                                Width="370"
-                                Grid.Row="0" Grid.Column="0"/>
+                                Width="200"
+                                Grid.Row="0" Grid.Column="0" Margin="0,31,0,26.667"/>
                     <Button
                             HorizontalAlignment="Left" 
                             VerticalAlignment="Center" 
                             BorderThickness="0"
-                            Grid.Row="0" Grid.Column="1">
+                            Grid.Row="0" Grid.Column="1" RenderTransformOrigin="0.488,0.458" Margin="29,20,0,13.667" Height="38">
                         <Image Stretch="UniformToFill"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Source="Assets/ic_search.png"/>
                     </Button>
 
-                    
+
                 </Grid>
             </PivotItem>
 
@@ -73,4 +73,16 @@
             </PivotItem>
         </Pivot>
     </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="Ricerca Avanzata" Click="AppBarButton_Click" >
+                    <AppBarButton.Icon>
+                        <BitmapIcon HorizontalAlignment="Right" Width="40" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
