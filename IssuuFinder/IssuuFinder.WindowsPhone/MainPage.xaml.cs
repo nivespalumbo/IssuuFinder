@@ -22,11 +22,19 @@ namespace IssuuFinder
 {
     public sealed partial class MainPage : Page
     {
+        private MainViewModel _viewModel = new MainViewModel();
+
         public MainPage()
         {
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+        }
+
+        public MainViewModel ViewModel
+        {
+            get { return _viewModel; }
+            set { _viewModel = value; }
         }
 
         /// <summary>
@@ -37,9 +45,9 @@ namespace IssuuFinder
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // TODO: preparare la pagina da visualizzare qui.
-            if (!App.ViewModel.IsDataLoaded)
+            if (!ViewModel.IsDataLoaded)
             {
-                App.ViewModel.LoadData();
+                ViewModel.LoadData();
             }
 
             // TODO: se l'applicazione contiene più pagine, assicurarsi che si stia
