@@ -16,25 +16,24 @@ using Windows.UI.Xaml.Navigation;
 
 // Il modello di elemento per la pagina base è documentato all'indirizzo http://go.microsoft.com/fwlink/?LinkId=234237
 using IssuuFinder.Model;
-using IssuuFinder.ViewModels;
 
 namespace IssuuFinder
 {
     /// <summary>
     /// Pagina base che fornisce caratteristiche comuni alla maggior parte delle applicazioni.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class DocumentDetailPage : Page
     {
 
         private NavigationHelper navigationHelper;
-        private MainViewModel _viewModel = new MainViewModel();
+        private IssuuDocument _document;
 
         /// <summary>
         /// È possibile sostituirlo con un modello di visualizzazione fortemente tipizzato.
         /// </summary>
-        public MainViewModel ViewModel
+        public IssuuDocument Document
         {
-            get { return _viewModel; }
+            get { return _document; }
         }
 
         /// <summary>
@@ -47,7 +46,7 @@ namespace IssuuFinder
         }
 
 
-        public MainPage()
+        public DocumentDetailPage()
         {
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
@@ -68,8 +67,13 @@ namespace IssuuFinder
         /// precedente. Lo stato è null la prima volta che viene visitata una pagina.</param>
         private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            if(!_viewModel.IsDataLoaded)
-                _viewModel.LoadData();
+            _document = e.NavigationParameter as IssuuDocument;
+            if (_document != null)
+            {
+                Uri url =
+                    new Uri("http://issuu.com/" + _document.Username + "/docs/" + _document.Docname);
+                webView.Navigate(url);
+            }
         }
 
         /// <summary>
@@ -106,12 +110,5 @@ namespace IssuuFinder
         }
 
         #endregion
-
-        private void GridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            IssuuDocument doc = e.AddedItems[0] as IssuuDocument;
-
-            this.Frame.Navigate(typeof (DocumentDetailPage), doc);
-        }
     }
 }

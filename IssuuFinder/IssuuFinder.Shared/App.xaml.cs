@@ -29,6 +29,9 @@ namespace IssuuFinder
 #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
 #endif
+        
+        public static MainViewModel MainVM = new MainViewModel();
+        public static DocumentDetailViewModel DetailVM;
 
         /// <summary>
         /// Inizializza l'oggetto Application singleton. Si tratta della prima riga del codice creato

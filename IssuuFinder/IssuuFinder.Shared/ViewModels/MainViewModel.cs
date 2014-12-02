@@ -17,7 +17,6 @@ namespace IssuuFinder.ViewModels
             _searchResults = new ObservableCollection<IssuuDocument>();
         }
 
-
         private ObservableCollection<IssuuDocument> _items;
 
         public ObservableCollection<IssuuDocument> Items
