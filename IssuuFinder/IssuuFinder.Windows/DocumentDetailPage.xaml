@@ -38,8 +38,12 @@
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button"/>
-            <TextBlock x:Name="pageTitle" Text="{Binding Docname}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+            <StackPanel Grid.Column="1" Margin="0,40,30,0">
+                <TextBlock x:Name="txDocname" Style="{StaticResource HeaderTextBlockStyle}"
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" />
+                <TextBlock x:Name="txEditor" Style="{StaticResource SubheaderTextBlockStyle}"
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,15,0,0" />
+            </StackPanel>
         </Grid>
 
         <WebView x:Name="webView" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Grid.Row="1" Width="1346" Height="608"/>

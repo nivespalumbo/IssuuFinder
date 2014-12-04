@@ -70,6 +70,8 @@ namespace IssuuFinder
             _document = e.NavigationParameter as IssuuDocument;
             if (_document != null)
             {
+                txDocname.Text = _document.Docname;
+                txEditor.Text = _document.Username;
                 Uri url =
                     new Uri("http://issuu.com/" + _document.Username + "/docs/" + _document.Docname);
                 webView.Navigate(url);

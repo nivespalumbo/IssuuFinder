@@ -79,7 +79,7 @@ namespace IssuuFinder.ViewModels
             {
                 HttpClient httpClient = new HttpClient();
                 string response =
-                    await httpClient.GetStringAsync(new Uri("http://search.issuu.com/api/2_0/document"));
+                    await httpClient.GetStringAsync(new Uri("http://search.issuu.com/api/2_0/document?language=it&pageSize=30"));
                 
                 if (!string.IsNullOrEmpty(response))
                 {
