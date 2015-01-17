@@ -13,7 +13,7 @@
         <Pivot Title="ISSUU FINDER">
             <!--Elemento Pivot uno-->
             <PivotItem Header="Home">
-                <ListView ItemsSource="{Binding Items}">
+                <ListView ItemsSource="{Binding Items}" IsItemClickEnabled="True" ItemClick="ListViewBase_OnItemClick">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Image Source="{Binding ThumbnailPath}" 
@@ -60,7 +60,7 @@
             <!--Elemento Pivot tre-->
             <PivotItem Header="Preferiti">
                 <!--Elenco a doppia riga senza testo a capo-->
-                <ListView DataContext="{Binding Items}">
+                <ListView DataContext="{Binding Items}" IsItemClickEnabled="True" ItemClick="ListViewBase_OnItemClick">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,0,0,17">
@@ -79,7 +79,7 @@
             <CommandBar.PrimaryCommands>
                 <AppBarButton Label="Ricerca Avanzata" Click="AppBarButton_Click" >
                     <AppBarButton.Icon>
-                        <BitmapIcon HorizontalAlignment="Right" Width="40" />
+                        <BitmapIcon HorizontalAlignment="Right" Width="40" UriSource="Assets/ic_search.png" />
                     </AppBarButton.Icon>
                 </AppBarButton>
             </CommandBar.PrimaryCommands>

@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Net.Http;
 using Newtonsoft.Json;
 using IssuuFinder.Model;
-using Newtonsoft.Json.Serialization;
 
 namespace IssuuFinder.ViewModels
 {
@@ -27,11 +26,10 @@ namespace IssuuFinder.ViewModels
             }
             private set
             {
-                if (value != _items)
-                {
-                    _items = value;
-                    NotifyPropertyChanged("Items");
-                }
+                if (value == _items)
+                    return;
+                _items = value;
+                NotifyPropertyChanged("Items");
             }
         }
 
@@ -45,11 +43,10 @@ namespace IssuuFinder.ViewModels
             }
             set 
             {
-                if (value != _searchResults)
-                {
-                    _searchResults = value;
-                    NotifyPropertyChanged("SearchResults");
-                }
+                if (value == _searchResults)
+                    return;
+                _searchResults = value;
+                NotifyPropertyChanged("SearchResults");
             }
         }
 
@@ -61,31 +58,16 @@ namespace IssuuFinder.ViewModels
 
         public async void LoadData()
         {
-            //WebClient webclient = new WebClient();
-            //webclient.DownloadStringCompleted += (sender, e) =>
-            //{
-            //    if (!string.IsNullOrEmpty(e.Result))
-            //    {
-            //        IssuuResponse root = JsonConvert.DeserializeObject<IssuuResponse>(e.Result);
-            //        Items = new ObservableCollection<IssuuDocument>(root.Response.Docs);
-            //    }
-
-            //    this.IsDataLoaded = true;
-            //};
-
-            //webclient.DownloadStringAsync(new Uri("http://search.issuu.com/api/2_0/document"));
-
-            try
+             try
             {
                 HttpClient httpClient = new HttpClient();
                 string response =
                     await httpClient.GetStringAsync(new Uri("http://search.issuu.com/api/2_0/document?language=it&pageSize=30"));
-                
-                if (!string.IsNullOrEmpty(response))
-                {
-                    IssuuResponse root = JsonConvert.DeserializeObject<IssuuResponse>(response);
-                    Items = new ObservableCollection<IssuuDocument>(root.Response.Docs);
-                }
+
+                if (string.IsNullOrEmpty(response))
+                    return;
+                IssuuResponse root = JsonConvert.DeserializeObject<IssuuResponse>(response);
+                Items = new ObservableCollection<IssuuDocument>(root.Response.Docs);
             }
             catch (Exception ex)
             {

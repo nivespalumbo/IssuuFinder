@@ -1,28 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// Il modello di elemento per la pagina vuota è documentato all'indirizzo http://go.microsoft.com/fwlink/?LinkId=234238
 using IssuuFinder.Model;
 using IssuuFinder.ViewModels;
+
+// Il modello di elemento per la pagina vuota è documentato all'indirizzo http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace IssuuFinder
 {
     public sealed partial class MainPage : Page
     {
-        private MainViewModel _viewModel = new MainViewModel();
+        private MainViewModel _viewModel = App.MainVM;
 
         public MainPage()
         {
@@ -59,8 +47,14 @@ namespace IssuuFinder
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(SearchPage));
+            //this.Frame.Navigate(typeof(SearchPage));
 
+        }
+
+        private void ListViewBase_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            IssuuDocument doc = e.ClickedItem as IssuuDocument;
+            this.Frame.Navigate(typeof (DocumentDetailPage), doc);
         }
     }
 }

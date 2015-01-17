@@ -1,19 +1,9 @@
 ﻿using IssuuFinder.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
@@ -31,7 +21,6 @@ namespace IssuuFinder
 #endif
         
         public static MainViewModel MainVM = new MainViewModel();
-        public static DocumentDetailViewModel DetailVM;
 
         /// <summary>
         /// Inizializza l'oggetto Application singleton. Si tratta della prima riga del codice creato
@@ -65,10 +54,12 @@ namespace IssuuFinder
             if (rootFrame == null)
             {
                 // Creare un frame che agisca da contesto di navigazione e passare alla prima pagina
-                rootFrame = new Frame();
+                rootFrame = new Frame
+                {
+                    CacheSize = 1
+                };
 
                 // TODO: modificare questo valore su una dimensione di cache appropriata per l'applicazione
-                rootFrame.CacheSize = 1;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

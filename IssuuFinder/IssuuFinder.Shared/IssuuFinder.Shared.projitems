@@ -17,8 +17,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Model\IssuuDocument.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\IssuuResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\SQLite.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DocumentDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
   </ItemGroup>

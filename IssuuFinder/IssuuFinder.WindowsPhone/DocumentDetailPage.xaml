@@ -1,0 +1,27 @@
+﻿<Page
+    x:Class="IssuuFinder.DocumentDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:IssuuFinder"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="115"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- Back button and page title -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,2">
+            <TextBlock x:Name="txDocname" Style="{StaticResource HeaderTextBlockStyle}"
+                    IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" />
+            <TextBlock x:Name="txEditor" Style="{StaticResource SubheaderTextBlockStyle}"
+                    IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom"/>
+        </StackPanel>
+
+        <WebView x:Name="webView" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,11,0,0" Grid.Row="1" Height="504" Width="380"/>
+    </Grid>
+</Page>
